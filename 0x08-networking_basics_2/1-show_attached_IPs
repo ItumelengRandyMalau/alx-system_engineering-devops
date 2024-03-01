@@ -1,0 +1,8 @@
+#!/bin/env bash
+
+# Extracts IPv4 addresses from the output of 'ip addr show'
+ipv4_addresses=$(ip -4 addr show | grep -oP '(?<=inet\s)\d+(\.\d+){3}')
+
+# Prints the extracted IPv4 addresses
+echo "Active IPv4 addresses:"
+echo "$ipv4_addresses"

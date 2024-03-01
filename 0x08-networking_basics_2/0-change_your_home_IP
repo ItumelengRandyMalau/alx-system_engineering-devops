@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# Configures an Ubuntu server with the bellow reqirements:
+#   - localhost resolves to 127.0.0.2
+#   - facebook.com resolves to 8.8.8.8
+
+cp /etc/hosts ~/hosts.copy
+echo "127.0.0.2		localhost" > ~/hosts.copy
+echo "8.8.8.8		facebook.com" >> ~/hosts.copy
+cp -f ~/hosts.copy /etc/hosts

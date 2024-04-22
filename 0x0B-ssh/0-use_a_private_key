@@ -1,4 +1,3 @@
 #!/usr/bin/env bash
-
 # this script establishes connection to my School Server.
 ssh -i ~/.ssh/school ubuntu@447512-web-01

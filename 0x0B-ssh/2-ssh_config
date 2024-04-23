@@ -1,0 +1,6 @@
+#this file configures the local ssh_config file to connect to the server without typing password.
+Host ubuntu-server
+    HostName 54.160.120.239
+    User ubuntu
+    IdentityFile ~/.ssh/school
+    PasswordAuthentication no

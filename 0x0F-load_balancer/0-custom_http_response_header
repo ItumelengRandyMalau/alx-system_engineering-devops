@@ -1,0 +1,32 @@
+#!/bin/env bash
+
+# Update package index and install Nginx
+sudo apt-get update
+sudo apt-get install -y nginx
+
+# Set custom response header in Nginx configuration
+cat <<EOF | sudo tee /etc/nginx/sites-available/custom-header > /dev/null
+server {
+    listen 80 default_server;
+    listen [::]:80 default_server;
+
+    server_name _;
+
+    root /var/www/html;
+    index index.html index.htm;
+
+    location / {
+        try_files $uri $uri/ =404;
+        add_header X-Served-By \$hostname;
+    }
+}
+EOF
+
+# Enable the new configuration by creating a symbolic link
+sudo ln -s /etc/nginx/sites-available/custom-header /etc/nginx/sites-enabled/
+
+# Test Nginx configuration for syntax errors
+sudo nginx -t
+
+# Reload Nginx to apply the changes
+sudo systemctl reload nginx

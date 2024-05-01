@@ -12,7 +12,7 @@ server {
     server_name _;
 
     root /var/www/html;
-    index index.html index.htm;
+    index index.html index.htm index.nginx-debian.html;
 
     location / {
         try_files $uri $uri/ =404;
@@ -21,11 +21,8 @@ server {
 }
 EOF
 
-# Enable the new configuration by creating a symbolic link
-sudo ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/
-
 # Test Nginx configuration for syntax errors
 sudo nginx -t
 
 # Reload Nginx to apply the changes
-sudo systemctl reload nginx
+sudo systemctl restart nginx

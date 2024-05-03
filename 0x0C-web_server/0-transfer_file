@@ -11,7 +11,7 @@ USERNAME="$3"
 SSH_KEY="4"
 
 #transfering the file to the server using the scp command
-scp -o StrictHostKeyChecking=no -i "$SSH_KEY" "$FILE" "$USERNAME@$IP":~
+scp -o StrictHostKeyChecking=no -i "$SSH_KEY" "$FILE" "$USERNAME@$IP:~/"
 
 # Check if the scp command was successful
 if [ "$?" -eq 0 ]; then

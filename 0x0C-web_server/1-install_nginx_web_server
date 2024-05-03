@@ -26,4 +26,3 @@ printf %s "server {
 
 # Restarts the Nginx service to apply the configurations updates.
 service nginx restart
-

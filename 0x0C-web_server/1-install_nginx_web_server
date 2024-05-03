@@ -1,0 +1,19 @@
+#!/bin/bash
+#Installs Nginx with the following configurations:
+#+ Listens on port 80.
+#+ Returns a page containing "Hello World!" when queried
+#++  at the root with a curl GET request.
+apt-get update
+apt-get install -y nginx
+
+# Ensure Nginx is listening on port 80
+sed -i 's/listen 80 default_server;/listen 80;/g' /etc/nginx/sites-available/default
+
+# Restart Nginx
+service nginx restart
+
+# Create a temporary index.html file with "Hello World!" content
+echo "<html><body>Hello World!</body></html>" > /var/www/html/index.html
+
+# Display confirmation message
+echo "Nginx installed and configured. Web server is now listening on port 80."

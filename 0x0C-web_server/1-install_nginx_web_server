@@ -9,16 +9,19 @@ apt-get update
 # installs the Nginx web server.
 apt-get install -y nginx
 #  sets the content of the index.html file to "Hello World!" using the 'echo' command
-echo "Hello World!" > /etc/nginx/html/index.html
+#creates the  /etc/nginx/html/ if it doesn't exist.
+mkdir -p /etc/nginx/html/
+#sets the contents of /etc/nginx/html/index.html.
+sudo echo "Hello World!" > /etc/nginx/html/index.html
 # Sets Nginx to listen on port 80 and serve files from the /etc/nginx/html directory.
-printf %s "server {
-     listen      80;
-     listen      [::]:80 default_server;
+sudo printf %s "server {
+     listen 80;
+     listen [::]:80 default_server;
      
      server_name _;
 
-     root        /etc/nginx/html;
-     index       index.html index.htm index.nginx-debian.html;
+     root /etc/nginx/html;
+     index index.html index.htm index.nginx-debian.html;
 }
 " > /etc/nginx/sites-available/default
 

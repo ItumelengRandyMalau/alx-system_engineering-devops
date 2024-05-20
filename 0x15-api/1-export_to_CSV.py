@@ -1,5 +1,6 @@
 #!/usr/bin/python3
-"""Returns information about an employee with a given ID and exports data to CSV"""
+"""Returns information of an employee with a given ID,
+and exports data to CSV"""
 
 import csv
 import requests
@@ -14,8 +15,10 @@ if __name__ == '__main__':
     json_repr = resp.json()
 
     # Fetch employee name from the API using employee ID
-    name_resp = requests.get('https://jsonplaceholder.typicode.com/users/{}'.format(employee_id))
-    name = name_resp.json().get('username')
+    resp = requests.get(
+            'https://jsonplaceholder.typicode.com/users/{}'.format(employee_id)
+            )
+    name = resp.json().get('username')
 
     # Open CSV file to write data
     with open('{}.csv'.format(employee_id), 'w') as csv_data:
@@ -25,7 +28,7 @@ if __name__ == '__main__':
             delimiter=",",
             quotechar='"',
             quoting=csv.QUOTE_ALL
-            )
+        )
 
         # Iterate through tasks and write data to CSV file
         for task in json_repr:
@@ -40,4 +43,3 @@ if __name__ == '__main__':
                         task.get('title')
                     ]
                 )
-
